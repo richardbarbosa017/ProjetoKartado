@@ -16,11 +16,36 @@ const todosFilter = (props) => (
         </ReferenceInput>
     </Filter>
 );
+/*
+export const todosList = props => {
+    const isSmall = useMediaQuery(theme=>theme.breakpoints.down('sm'));
+    return (
+        <List filters={<todosFilter/>} {...props}>
+            {isSmall ? (
+                <SimpleList
+                    primaryText={record => record.title}
+                    secondaryText={record => `${record.views} views`}
+                    tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+                />
+            ) : (
+                <Datagrid rowClick="edit">
+                        <TextField source="id" />
+                        <ReferenceField label="User" source="userId" reference="users">
+                            <TextField source="name" />
+                        </ReferenceField>
+                        <TextField source="title" />
+                        <TextField source="completed" />
+                        <EditButton />
+                </Datagrid>
+            )}
+        </List>
+    );
+}*/
 
 export const todosList = props => {
     //const isSmall = useMediaQuery(theme=>theme.breakpoints.down('sm'));
     return (
-        <List filters={<todosFilter/>} {...props}>
+        <List title = {"Tarefas"} filters={<todosFilter/>} {...props}>
             {
                 <Datagrid rowClick="edit">
                     <TextField source="id" />
@@ -35,19 +60,6 @@ export const todosList = props => {
         </List>
     );
 }
-
-    /*<List filters={<todosFilter/>}  {...props}>
-        <Datagrid rowClick="edit">
-            <ReferenceField source="userId" reference="users">
-                <TextField source="name" />
-            </ReferenceField>
-            <TextField source="id" />
-            <TextField source="title" />
-            <TextField source="body" />
-            <EditButton/>
-        </Datagrid>
-    </List>*/
-
 export const todosEdit = props => (
     <Container>
         <Edit title={<todosTitle/>} {...props}>

@@ -1,26 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {CardMedia,Card, CardContent, CardHeader,CardActionArea} from '@material-ui/core';
+import {Card, CardContent, CardHeader,CardActionArea} from '@material-ui/core';
 import working from './images/funcionarios.jpg';
 import todos from './images/tarefas.jpg';
 import status from './images/status.jpg';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import UserList from './users';
+import { NavLink } from "react-router-dom";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-
-function AppRouter() {
-  return (
-    <Router>
-      <div>
-        
-        <Route path="/users/"  />
-      </div>
-    </Router>
-  );
-}
 
 const useStyles = makeStyles({
     root: {
@@ -52,9 +37,8 @@ export default () => {
     return(
     <div className={conf.root}>
     <>
-        <Card className={classes.root} onClick={() => AppRouter()}>
-            <CardActionArea>
-                
+        <Card className={classes.root} >
+            <CardActionArea component = {NavLink} to ="/users">
                 <img src={working} height="140" />
                 <CardHeader title="Funcionários" />
                 <CardContent>
@@ -64,7 +48,7 @@ export default () => {
         </Card>
         <br></br>
         <Card className={classes.root}>
-            <CardActionArea>                   
+            <CardActionArea component = {NavLink} to ="/todos">                   
                 <img src={todos} width="140" height="140"  />           
                 <CardHeader title="Tarefas" />
                 <CardContent>Atividades disponíveis na empresa.</CardContent>
