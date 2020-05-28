@@ -1,26 +1,27 @@
+// in src/App.js
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Admin, Resource } from 'react-admin';
+import { UserList } from './components/users';
+import { todosList ,todosCreate, todosEdit} from './components/toDos';
+import jsonServerProvider from 'ra-data-json-server';
+import todosIcon from '@material-ui/icons/Work';
+import UserIcon from '@material-ui/icons/Group';
+import Dashboard from './components/Dashboard';
+import authProvider from './components/authProvider';
+import { createMuiTheme } from '@material-ui/core/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark', // Switching the dark mode on is a single property value change.
+  },
+});
+
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+const App = () => (
+    <Admin theme={theme} authProvider={authProvider} dashboard={Dashboard} dataProvider={dataProvider}>
+        <Resource name="users" options={{ label: 'Funcionários' }} list={UserList} icon={UserIcon} />
+        <Resource name="todos" options={{ label: 'Tarefas' }} list={todosList}  edit={todosEdit} create={todosCreate} icon={todosIcon} />
+    </Admin>
+);
 
 export default App;
