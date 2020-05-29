@@ -17,15 +17,15 @@ const useStylesSmall = makeStyles({
       height:150,
   },
   background: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    order: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    textAlign:"center",
-    maxHeight:'140px',
-    padding: '10px 50px',
-    margin:'10px 10px',
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      order: 0,
+      borderRadius: 3,
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      color: 'white',
+      textAlign:"center",
+      maxHeight:'140px',
+      padding: '10px 50px',
+      margin:'10px 10px',
   },
 });
 const configSmall = makeStyles({
@@ -40,9 +40,9 @@ const stySmall = makeStyles({
   root: {    
       textAlign: 'center',
       color: 'white',
-  fontFamily: 'Montserrat-Bold',
-  fontSize: 16,
-  fontWeight: undefined,
+      fontFamily: 'Montserrat-Bold',
+      fontSize: 16,
+      fontWeight: undefined,
   },
 });
 const useStyles = makeStyles({

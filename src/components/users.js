@@ -1,19 +1,15 @@
 // in src/users.js
 import React from 'react';
-//import { TextInput,Filter,TextInput,List, Datagrid, TextField, } from 'react-admin';
 import {useMediaQuery, Container} from '@material-ui/core';
-import {ReferenceInput,SelectInput,BooleanInput,SimpleList, Filter, Create,EmailField,TextInput, SimpleForm,Edit, List, Datagrid, TextField } from 'react-admin';
+import {BooleanInput,SimpleList, Filter, Create,EmailField,TextInput, SimpleForm,Edit, List, Datagrid, TextField } from 'react-admin';
 
 const UserTitle = ({ record }) => {
     return <span>Funcionário(a) {record ? `"${record.name}"` : ''}</span>;
 };
-
+ 
 const UserFilter = (props) => (
     <Filter {...props}>
         <TextInput label="Buscar" source="q" alwaysOn />
-        <ReferenceInput label="User" source="userId" reference="users" allowEmpty>
-            <SelectInput label="Nome" optionText="name" />
-        </ReferenceInput>
     </Filter>
 );
 

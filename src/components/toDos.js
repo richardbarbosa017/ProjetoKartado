@@ -1,7 +1,7 @@
-// in src/todoss.js
+// in src/toDos.js
 import React from 'react';
 import {useMediaQuery, Container} from '@material-ui/core';
-import {BooleanField,BooleanInput,SimpleList, Filter, Create, SelectInput ,ReferenceInput,TextInput, SimpleForm,Edit, List, Datagrid, TextField, ReferenceField, EditButton } from 'react-admin';
+import {Show,SimpleShowLayout,BooleanField,BooleanInput,SimpleList, Filter, Create, SelectInput ,ReferenceInput,TextInput, SimpleForm,Edit, List, Datagrid, TextField, ReferenceField, EditButton } from 'react-admin';
 
 
 const TodosTitle = ({ record }) => {
@@ -39,9 +39,20 @@ export const TodosList = props => {
         </List>
     );
 }
+export const TodosShow = (props) => (
+    <Show title={<TodosTitle/>} {...props}>
+        <SimpleShowLayout>
+            <TextField label="Descrição" source="title" />
+            <ReferenceField label="Funcionário" source="userId" reference="users">
+                <TextField source="name" />
+            </ReferenceField>
+            <BooleanField label="Completado" source="completed" />
+        </SimpleShowLayout>
+    </Show>
+);
 export const TodosEdit = props => (
     <Container>
-        <Edit title={<TodosTitle/>} {...props}>
+        <Edit title={<p>Editar Tarefa</p>} {...props}>
             <SimpleForm>
                 <TextInput disabled source="id" />
                 <ReferenceInput label= "Funcionário" source="userId" reference="users">
