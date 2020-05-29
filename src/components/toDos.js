@@ -1,68 +1,47 @@
 // in src/todoss.js
 import React from 'react';
 import {useMediaQuery, Container} from '@material-ui/core';
-import {BooleanInput,SimpleList, Filter, Create, SelectInput ,ReferenceInput,TextInput, SimpleForm,Edit, List, Datagrid, TextField, ReferenceField, EditButton } from 'react-admin';
+import {BooleanField,BooleanInput,SimpleList, Filter, Create, SelectInput ,ReferenceInput,TextInput, SimpleForm,Edit, List, Datagrid, TextField, ReferenceField, EditButton } from 'react-admin';
 
 
-const todosTitle = ({ record }) => {
-    return <span>todos {record ? `"${record.title}"` : ''}</span>;
+const TodosTitle = ({ record }) => {
+    return <span>Tarefa {record ? `"${record.title}"` : ''}</span>;
 };
 
-const todosFilter = (props) => (
+const TodosFilter = (props) => (
     <Filter {...props}>
-        <TextInput label="Search" source="q" alwaysOn />
-        <ReferenceInput label="User" source="userId" reference="users" allowEmpty>
+        <TextInput label="Buscar" source="q" alwaysOn />
+        <ReferenceInput label="Nome" source="userId" reference="users" allowEmpty>
             <SelectInput optionText="name" />
         </ReferenceInput>
     </Filter>
 );
-/*
-export const todosList = props => {
+
+export const TodosList = props => {
     const isSmall = useMediaQuery(theme=>theme.breakpoints.down('sm'));
     return (
-        <List filters={<todosFilter/>} {...props}>
+        <List title="Tarefas" filters={<TodosFilter/>} {...props}>
             {isSmall ? (
-                <SimpleList
+                <SimpleList source="name"
                     primaryText={record => record.title}
-                    secondaryText={record => `${record.views} views`}
-                    tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
                 />
             ) : (
                 <Datagrid rowClick="edit">
                         <TextField source="id" />
-                        <ReferenceField label="User" source="userId" reference="users">
+                        <ReferenceField label="Nome" source="userId" reference="users">
                             <TextField source="name" />
                         </ReferenceField>
-                        <TextField source="title" />
-                        <TextField source="completed" />
+                        <TextField label="Tarefa" source="title" />
+                        <BooleanField textAlign="center" label="Completo" source="completed" />
                         <EditButton />
                 </Datagrid>
             )}
         </List>
     );
-}*/
-
-export const todosList = props => {
-    //const isSmall = useMediaQuery(theme=>theme.breakpoints.down('sm'));
-    return (
-        <List title = {"Tarefas"} filters={<todosFilter/>} {...props}>
-            {
-                <Datagrid rowClick="edit">
-                    <TextField source="id" />
-                    <ReferenceField label="User" source="userId" reference="users">
-                        <TextField source="name" />
-                    </ReferenceField>
-                    <TextField source="title" />
-                    <TextField source="completed" />
-                    <EditButton />
-                </Datagrid>
-            }
-        </List>
-    );
 }
-export const todosEdit = props => (
+export const TodosEdit = props => (
     <Container>
-        <Edit title={<todosTitle/>} {...props}>
+        <Edit title={<TodosTitle/>} {...props}>
             <SimpleForm>
                 <TextInput disabled source="id" />
                 <ReferenceInput label= "Funcionário" source="userId" reference="users">
@@ -74,8 +53,8 @@ export const todosEdit = props => (
         </Edit>
     </Container>
 );
-export const todosCreate = props => (
-    <Create {...props}>
+export const TodosCreate = props => (
+    <Create title={"Criar Tarefa"} {...props}>
         <SimpleForm>
             <ReferenceInput label= "Funcionário" source="userId" reference="users">
                 <SelectInput optionText="name" />
